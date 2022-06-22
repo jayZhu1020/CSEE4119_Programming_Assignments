@@ -1,0 +1,105 @@
+Test Case 1:
+
+Server:
+
+jz3417@csee4119-instance1:~$ python3 ChatApp.py -s 2000
+
+Client x:
+
+jz3417@csee4119-instance1:~$ python3 ChatApp.py -c x 127.0.0.1 2000 3000
+>>> Welcome, you are registered.
+>>> client table updated.
+>>> client table updated.
+>>> send y talking to y
+>>> Message received by y
+>>> send z talkingto z
+>>> Message received by z
+>>> send x talking to myself
+>>> Message received by x
+>>> x: talking to myself
+>>> y: talking to x 
+>>> z: talking to x 
+>>> dereg x
+>>> You are Offline. Bye.
+>>> 
+>>> reg x
+>>> Welcome back
+>>> You Have Messages
+>>> y: Fri Mar 25 02:59:43 2022 talking to x again
+>>> z: Fri Mar 25 02:59:59 2022 talking to x again
+>>> 
+
+Client y:
+
+jz3417@csee4119-instance1:~$ python3 ChatApp.py -c y 127.0.0.1 2000 4000
+>>> Welcome, you are registered.
+>>> client table updated.
+>>> x: talking to y 
+>>> send x talking to x
+>>> Message received by x
+>>> 
+>>> send z talking to z
+>>> Message received by z
+>>> send y talking to myself
+>>> Message received by y
+>>> y: talking to myself
+>>> z: talking to y 
+>>> client table updated.
+>>> send x talking to x again
+>>> Messages received by the server and saved
+>>> client table updated.
+>>> 
+
+Client z:
+
+jz3417@csee4119-instance1:~$ python3 ChatApp.py -c z 127.0.0.1 2000 5000
+>>> Welcome, you are registered.
+>>> x: talkingto z 
+>>> y: talking to z 
+>>> send x talking to x
+>>> Message received by x
+>>> send y talking to y
+>>> Message received by y
+>>> send z talking to myself
+>>> Message received by z
+>>> z: talking to myself
+>>> client table updated.
+>>> send x talking to x again
+>>> Messages received by the server and saved
+>>> client table updated.
+>>> 
+
+Test Case 2:
+
+Server:
+
+jz3417@csee4119-instance1:~$ python3 ChatApp.py -s 2000
+^CTraceback (most recent call last):
+  File "ChatApp.py", line 62, in <module>
+    client_or_server_object.run()
+  File "/home/jz3417/server.py", line 17, in run
+    message, client_address = self.server_socket.recvfrom(MAX_BUFFER_SIZE)
+KeyboardInterrupt
+jz3417@csee4119-instance1:~$ 
+
+
+Client x:
+
+jz3417@csee4119-instance1:~$ python3 ChatApp.py -c x 127.0.0.1 2000 3000
+>>> Welcome, you are registered.
+>>> client table updated.
+>>> client table updated.
+>>> send y try to talk to y
+>>> Server not responding
+>>> Exiting
+jz3417@csee4119-instance1:~$ 
+
+Client y:
+
+jz3417@csee4119-instance1:~$ python3 ChatApp.py -c y 127.0.0.1 2000 4000
+>>> Welcome, you are registered.
+>>> dereg y
+>>> You are Offline. Bye.
+>>> 
+
+
